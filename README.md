@@ -28,5 +28,7 @@ Fork this repository, and then clone it by running the following command:
 ### Maintainers
 
 Juraj
+Slavko
 
 Developed without any help from myself!
+
