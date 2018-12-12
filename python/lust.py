@@ -46,6 +46,32 @@ class SquareCommand(LustObject):
   def __calculate_square(self, argument):
     return argument ** 2
 
+class CheckPrimeCommand(LustObject):
+  def handle(self, arguments):
+    try: argument = int(arguments[0])
+    except (ValueError, IndexError):
+      print("checkprime: could not read integer argument.")
+      return
+
+    if not argument > 1:
+      print("checkprime: argument has to be > 1!")
+      return
+
+    print(self.__check_prime(argument))
+
+  def print_help(self):
+    print(" checkprime <integer>")
+    print("   Performs a primality test.")
+
+  def __check_prime(self, argument):
+    # I think that there is a theorem that says
+    # that we can check fewer numbers
+    upper_bound = argument
+    for i in range(2, upper_bound):
+      if argument % i == 0:
+        return False
+    return True
+
 class QuitCommand(LustObject):
   def handle(self, arguments = None):
     print("Bye!")
@@ -75,6 +101,7 @@ commands = { }
 
 commands["square"] = SquareCommand()
 commands["fact"] = FactorialCommand()
+commands["checkprime"] = CheckPrimeCommand()
 commands["quit"] = QuitCommand()
 # help command needs a reference to the parent dictionary in order to call each
 # command's print_help() function
