@@ -29,11 +29,12 @@ class FactorialCommand(LustObject):
       result *= i
     return result
 
+# Command for squaring.
 class SquareCommand(LustObject):
   def handle(self, arguments):
     try: argument = int(arguments[0])
     except (ValueError, IndexError):
-      print("fact: could not read integer argument.")
+      print("square: could not read integer argument.")
       return
 
     print(self.__calculate_square(argument))
@@ -43,7 +44,7 @@ class SquareCommand(LustObject):
     print("   Calculates the square of <integer>.")
 
   def __calculate_square(self, argument):
-    return argument * argument
+    return argument ** 2
 
 class QuitCommand(LustObject):
   def handle(self, arguments = None):
