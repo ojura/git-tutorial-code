@@ -29,6 +29,23 @@ class FactorialCommand(LustObject):
       result *= i
     return result
 
+# Command for squaring.
+class SquareCommand(LustObject):
+  def handle(self, arguments):
+    try: argument = int(arguments[0])
+    except (ValueError, IndexError):
+      print("square: could not read integer argument.")
+      return
+
+    print(self.__calculate_square(argument))
+
+  def print_help(self):
+    print(" square <integer>")
+    print("   Calculates the square of <integer>.")
+
+  def __calculate_square(self, argument):
+    return argument ** 2
+
 class QuitCommand(LustObject):
   def handle(self, arguments = None):
     print("Bye!")
@@ -56,6 +73,7 @@ print("Enter 'help' for a list of commands. Press Ctrl-D or enter 'quit' to quit
 # dictionary for storing all commands
 commands = { }
 
+commands["square"] = SquareCommand()
 commands["fact"] = FactorialCommand()
 commands["quit"] = QuitCommand()
 # help command needs a reference to the parent dictionary in order to call each
